@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bouton Fuyant avec Déplacement Plus Rapide</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: linear-gradient(to right, #ff7e5f, #feb47b); /* Fond dégradé */
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Arial', sans-serif;
+            position: relative; /* Needed for absolute positioning of the title */
+        }
+
+        #button {
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #6200ea;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease, top 0.2s ease, left 0.2s ease; /* Vitesse de transition réduite */
+            position: absolute;
+        }
+
+        #button:hover {
+            background-color: #3700b3;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+            transform: scale(1.1);
+        }
+
+        #background-title {
+            position: absolute;
+            top: 20%; /* Positionne le titre en haut */
+            left: 50%;
+            transform: translateX(-50%); /* Centre horizontalement */
+            font-size: 48px;
+            color: rgba(255, 255, 255, 0.8); /* Couleur blanche avec transparence */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Ombre pour une meilleure lisibilité */
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="background-title">Appuie sur le bouton</h1>
+    <button id="button">Attrape moi!</button>
+
+    <script>
+        const button = document.getElementById('button');
+        let timeout;
+
+        button.addEventListener('mouseover', () => {
+            clearTimeout(timeout);
+            timeout = setTimeout(() => {
+                const x = Math.random() * (window.innerWidth - button.clientWidth);
+                const y = Math.random() * (window.innerHeight - button.clientHeight);
+                button.style.left = `${x}px`;
+                button.style.top = `${y}px`;
+            }, 50); // Délai plus court pour un déplacement plus rapide
+        });
+
+        button.addEventListener('click', () => {
+            window.location.href = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+        });
+    </script>
+</body>
+</html>
+
+
+
